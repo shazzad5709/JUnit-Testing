@@ -58,7 +58,7 @@ public class Bank {
                 newAccount = new SavingAccount(initialBalance, dateOfOpening, generateRandomId());
                 break;
             default:
-                newAccount = new Account(initialBalance, dateOfOpening, generateRandomId(), AccountType.CHECKING_ACCOUNT);
+                newAccount = new Account(initialBalance, generateRandomId(), AccountType.CHECKING_ACCOUNT);
                 break;
         }
         Account[] newAccounts = new Account[accounts.length + 1];
@@ -75,7 +75,7 @@ public class Bank {
     //add new loanAccount
     public void addNewAccount(int customerIndex, long initialBalance, MyDate dateOfOpening,
                               long loanAmount, double loanInterest, int numOfMonths){
-        Account newAccount = new LoanAccount(initialBalance, dateOfOpening, generateRandomId(),
+        Account newAccount = new LoanAccount(initialBalance, generateRandomId(),
                 loanAmount, loanInterest, numOfMonths);
         Account[] newAccounts = new Account[accounts.length + 1];
         for (int i = 0; i < accounts.length; i++){
@@ -120,11 +120,11 @@ public class Bank {
                 accounts[i].setBalance(newAccountBalance);
                 System.out.println("Transaction happened successfully!");
                 System.out.println("Now, This account balance is " + newAccountBalance);
-                Transaction newTransaction = new Transaction(dateOfTransaction, amountOfTransfer, TransactionType.WITHDRAW);
+                Transaction newTransaction = new Transaction(amountOfTransfer, TransactionType.WITHDRAW);
                 accounts[i].addNewTransaction(newTransaction);
                 if (accounts[i].getAccountType().getType().equals(AccountType.CHECKING_ACCOUNT.getType())){
                     accounts[i].updateBalance();
-                    Transaction feesTransaction = new Transaction(dateOfTransaction, CheckingAccount.getFees(), TransactionType.FEES);
+                    Transaction feesTransaction = new Transaction(CheckingAccount.getFees(), TransactionType.FEES);
                     accounts[i].addNewTransaction(feesTransaction);
                 }
                 updateCustomerAccount(accountId, accounts[i]);
@@ -159,11 +159,11 @@ public class Bank {
                 accounts[i].setBalance(newAccountBalance);
                 System.out.println("Transaction happened successfully!");
                 System.out.println("Now, This account balance is " + newAccountBalance);
-                Transaction newTransaction = new Transaction(dateOfTransaction, amountOfTransfer, TransactionType.DEPOSIT);
+                Transaction newTransaction = new Transaction(amountOfTransfer, TransactionType.DEPOSIT);
                 accounts[i].addNewTransaction(newTransaction);
                 if (accounts[i].getAccountType().getType().equals(AccountType.CHECKING_ACCOUNT.getType())){
                     accounts[i].updateBalance();
-                    Transaction feesTransaction = new Transaction(dateOfTransaction, CheckingAccount.getFees(), TransactionType.FEES);
+                    Transaction feesTransaction = new Transaction(CheckingAccount.getFees(), TransactionType.FEES);
                     accounts[i].addNewTransaction(feesTransaction);
                 }
                 updateCustomerAccount(accountId, accounts[i]);
@@ -188,14 +188,14 @@ public class Bank {
                 }
                 if(accountType.getType().equals(AccountType.SAVING_ACCOUNT.getType())){
                     accounts[i].updateBalance();
-                    Transaction newTransaction = new Transaction(dateOfTransaction, accounts[i].calculateAmountOfInterest(), TransactionType.INTEREST);
+                    Transaction newTransaction = new Transaction(accounts[i].calculateAmountOfInterest(), TransactionType.INTEREST);
                     accounts[i].addNewTransaction(newTransaction);
                     updateCustomerAccount(accountId, accounts[i]);
                     return;
                 }
                 if(accountType.getType().equals(AccountType.LOAN_ACCOUNT.getType())){
                     accounts[i].updateBalance();
-                    Transaction newTransaction = new Transaction(dateOfTransaction, accounts[i].calculateAmountOfInterest(), TransactionType.INTEREST);
+                    Transaction newTransaction = new Transaction(accounts[i].calculateAmountOfInterest(), TransactionType.INTEREST);
                     accounts[i].addNewTransaction(newTransaction);
                     updateCustomerAccount(accountId, accounts[i]);
                     return;

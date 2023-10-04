@@ -7,9 +7,9 @@ public class LoanAccount extends Account{
     private double loanInterest;
     private int numOfMonths;
 
-    public LoanAccount(long balance, MyDate dateOfOpening, long accountNum,
+    public LoanAccount(long balance, long accountNum,
                        long loanAmount, double loanInterest, int numOfMonths) {
-        super(balance, dateOfOpening, accountNum, AccountType.LOAN_ACCOUNT);
+        super(balance, accountNum, AccountType.LOAN_ACCOUNT);
         this.loanAmount = loanAmount;
         this.loanInterest = loanInterest;
         this.numOfMonths = numOfMonths;
@@ -53,7 +53,6 @@ public class LoanAccount extends Account{
     public String toString() {
         return "LoanAccount{" +
                 "balance=" + balance +
-                ", dateOfOpening=" + dateOfOpening.toString() +
                 ", accountNum=" + accountNum +
                 ", accountType=" + accountType.getType() +
                 ", loanAmount=" + loanAmount +

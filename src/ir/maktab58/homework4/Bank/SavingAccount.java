@@ -6,7 +6,7 @@ public class SavingAccount extends Account{
     private static double monthlyInterest = 0.1;
 
     public SavingAccount(long balance, MyDate dateOfOpening, long accountNum) {
-        super(balance, dateOfOpening, accountNum, AccountType.SAVING_ACCOUNT);
+        super(balance, accountNum, AccountType.SAVING_ACCOUNT);
     }
 
     @Override

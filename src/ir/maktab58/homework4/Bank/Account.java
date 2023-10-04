@@ -2,32 +2,14 @@ package ir.maktab58.homework4.Bank;
 
 import ir.maktab58.homework4.MyDate.*;
 
-enum AccountType{
-    CHECKING_ACCOUNT("checking"),
-    SAVING_ACCOUNT("saving"),
-    LOAN_ACCOUNT("loan");
-
-    private String type;
-
-    AccountType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-}
-
 public class Account {
     protected long balance;
-    protected final MyDate dateOfOpening;
     protected long accountNum;
     protected final AccountType accountType;
     protected Transaction[] transactions = new Transaction[0];
 
-    public Account(long balance, MyDate dateOfOpening, long accountNum, AccountType accountType) {
+    public Account(long balance, long accountNum, AccountType accountType) {
         this.balance = balance;
-        this.dateOfOpening = dateOfOpening;
         this.accountNum = accountNum;
         this.accountType = accountType;
     }
@@ -62,9 +44,7 @@ public class Account {
         this.balance = balance;
     }
 
-    public MyDate getDateOfOpening() {
-        return dateOfOpening;
-    }
+
 
     public long getAccountNum() {
         return accountNum;
@@ -90,7 +70,6 @@ public class Account {
     public String toString() {
         return "Account{" +
                 "balance=" + balance +
-                ", dateOfOpening=" + dateOfOpening.toString() +
                 ", accountNum=" + accountNum +
                 ", accountType=" + accountType.getType() +
                 '}';

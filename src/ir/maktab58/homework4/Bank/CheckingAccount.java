@@ -7,7 +7,7 @@ public class CheckingAccount extends Account{
     private static long withdrawalLimit = 2000000;
 
     public CheckingAccount(long balance, MyDate dateOfOpening, long accountNum) {
-        super(balance, dateOfOpening, accountNum, AccountType.CHECKING_ACCOUNT);
+        super(balance, accountNum, AccountType.CHECKING_ACCOUNT);
     }
 
     @Override
