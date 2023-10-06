@@ -395,7 +395,7 @@ public class Main {
             if ((phoneNumberStr.charAt(i) < 48) || (phoneNumberStr.charAt(i) > 57))
                 return false;
         }
-        return true;
+        return !phoneNumberStr.isEmpty();
     }
 
     public static int[] convertStrArrayToInt(String[] inputArray){

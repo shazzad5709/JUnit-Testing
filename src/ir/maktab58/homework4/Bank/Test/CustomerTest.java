@@ -124,4 +124,37 @@ public class CustomerTest {
         Assertions.assertFalse(result);
     }
 
+
+    @Test
+    @DisplayName("Test to edit an existing account of a customer")
+    void editAccountOfCustomerTest() {
+        Account account = new Account(1000, 123456789, AccountType.SAVING_ACCOUNT);
+        customer.editAccount(account);
+        Assertions.assertEquals(account, customer.getAccounts()[0]);
+    }
+
+    @Test
+    @DisplayName("Test to edit a non-existing account of a customer")
+    void editNonExistingAccountOfCustomerTest() {
+        Account account = new Account(1000, 987654321, AccountType.SAVING_ACCOUNT);
+        customer.editAccount(account);
+        Assertions.assertNotEquals(account, customer.getAccounts()[0]);
+    }
+
+    @Test
+    @DisplayName("Test to calculate account ids of a customer")
+    void calcAccountIdsOfCustomerTest() {
+        long[] accountIds = customer.calcAccountIds();
+        Assertions.assertEquals(123456789, accountIds[0]);
+        Assertions.assertEquals(123456789, accountIds[1]);
+        Assertions.assertEquals(123456789, accountIds[2]);
+    }
+
+    @Test
+    @DisplayName("Test to calculate account ids of a customer with no account")
+    void calcAccountIdsOfCustomerWithNoAccountTest() {
+        customer.setAccounts(new Account[0]);
+        long[] accountIds = customer.calcAccountIds();
+        Assertions.assertEquals(0, accountIds.length);
+    }
 }
